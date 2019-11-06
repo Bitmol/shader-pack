@@ -1,24 +1,15 @@
+// Kuwahara Filter
+
 #version 330 core
 
 out vec4 FragColor;
 in vec2 texCoord;
 
 uniform sampler2D texmap;
-uniform sampler2D shadowmaptex;
-
-uniform int radius_lit;
-uniform int radius_unlit;
-
+uniform int radius;
 
 void main (void) {
 
-	vec4 shadow_color = texture(shadowmaptex, texCoord);
-	int radius;
-	if(shadow_color == vec4(1.))
-		radius = radius_lit;
-	else
-		radius = radius_unlit;
-	
     vec2 src_size = vec2(textureSize(texmap, 0));
     float n = float((radius + 1) * (radius + 1));
 

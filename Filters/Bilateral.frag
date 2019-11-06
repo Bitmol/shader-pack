@@ -1,3 +1,5 @@
+// Bilateral Filter
+
 #version 330 core
 
 in vec2 texCoord;
@@ -5,13 +7,10 @@ in vec2 texCoord;
 out vec4 FragColor;
 
 uniform sampler2D texmap;
-uniform sampler2D shadowmaptex;
 
 #define F 0.619928135
-uniform float sigmaS_lit;
-uniform float sigmaL_lit;
-uniform float sigmaS_unlit;
-uniform float sigmaL_unlit;
+uniform float sigmaS;
+uniform float sigmaL;
 
 
 float lum(in vec4 color) {
@@ -21,18 +20,6 @@ float lum(in vec4 color) {
 }
 
 void main() {
-
-	vec4 shadow_color = texture(shadowmaptex, texCoord);
-	float sigmaS, sigmaL;
-
-	if(shadow_color == vec4(1.)) {
-		sigmaS = sigmaS_lit;
-		sigmaL = sigmaL_lit;
-	}
-	else {
-		sigmaS = sigmaS_unlit;
-		sigmaL = sigmaL_unlit;
-	}
 
 	const float eps = 1e-10;
 

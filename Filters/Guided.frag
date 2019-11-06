@@ -85,10 +85,8 @@ vec4 guided_filter() {
 
 }
 
-// @todo Try with Mat4 type
 void main() {
 	
 
 	FragColor = guided_filter();
-	//FragColor = vec4(1., 0., 0., 0.);
 }
